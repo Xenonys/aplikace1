@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/reset.css">
+    <script src="../assets/popup.js"></script>
+    <script src="../assets/signout.js"></script>
+    <script src="../assets/language.js"></script>
+</head>
+<body class="telo">
+    <nav>   
+        <div class="window-controls">
+            <button id="minimize-btn">—</button>
+            <button id="maximize">⬜</button>
+            <button id="close-btn">✖</button>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="sidebar1"> 
+            <a href="../index.html" class="logo">
+                <svg width="80" height="81" viewBox="0 0 80 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path id="Black outline logo" d="M12.9167 41.7045L2.5 50.2273L23.3333 67.2727M12.9167 41.7045L2.5 33.1818L40 2.5L77.5 33.1818L67.0833 41.7045M12.9167 41.7045L23.3333 50.2273V67.2727M23.3333 67.2727L35.8333 77.5V50.2273L15 33.1818L40 12.7273L65 33.1818L44.1667 50.2273V77.5L56.6667 67.2727M67.0833 41.7045L77.5 50.2273L56.6667 67.2727M67.0833 41.7045L56.6667 50.2273V67.2727M40 33.1818L33.75 38.2955L27.5 33.1818L40 22.9545L52.5 33.1818L46.25 38.2955L40 33.1818Z" stroke="white" stroke-width="3"/>
+                </svg>
+            </a>
+            <a href="../index.html" class="item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="home-04"><path id="Icon" d="M9 21V14.1528C9 13.5226 9.53726 13.0116 10.2 13.0116H13.8C14.4627 13.0116 15 13.5226 15 14.1528V21M11.3046 3.21117L3.50457 8.48603C3.18802 8.7001 3 9.04665 3 9.41605V19.2882C3 20.2336 3.80589 21 4.8 21H19.2C20.1941 21 21 20.2336 21 19.2882V9.41605C21 9.04665 20.812 8.70011 20.4954 8.48603L12.6954 3.21117C12.2791 2.92961 11.7209 2.92961 11.3046 3.21117Z" stroke="white" stroke-width="2" stroke-linecap="round"/></g></svg>
+                <div class="title">Domů</div>
+            </a>
+            <a href="./profil.html" class="frame">
+                <div class="item1">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="user-profile-03"><path id="Icon" d="M3.23773 19.5C4.56314 17.2892 7.46801 15.7762 12 15.7762C16.532 15.7762 19.4369 17.2892 20.7623 19.5M15.6 8.1C15.6 10.0882 13.9882 11.7 12 11.7C10.0118 11.7 8.40001 10.0882 8.40001 8.1C8.40001 6.11177 10.0118 4.5 12 4.5C13.9882 4.5 15.6 6.11177 15.6 8.1Z" stroke="white" stroke-width="2" stroke-linecap="round"/></g></svg>
+                    <div class="title">Profil</div>
+                </div>
+            </a>
+            <a href="./zpravy.html" class="item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="message-chat-01"><path id="Icon" d="M4.99983 11C4.99983 6.58172 8.58125 3 12.9992 3C17.4171 3 20.9985 6.58172 20.9985 11C20.9985 12.15 20.7558 13.2434 20.319 14.2316L21 18.9992L16.9146 17.9778C15.7572 18.6287 14.4215 19 12.9992 19M3.00095 16C3.00095 16.7188 3.15258 17.4021 3.4256 18.0198L3 20.9995L5.55315 20.3611C6.27643 20.768 7.11115 21 8.00005 21C10.761 21 12.9992 18.7614 12.9992 16C12.9992 13.2386 10.761 11 8.00005 11C5.23912 11 3.00095 13.2386 3.00095 16Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+                <div class="title">Zprávy</div>
+            </a>
+            <a href="./smeny.html" class="item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="calendar-02"><path id="Icon" d="M7.75 17.2202V17.1428M12.25 17.2202V17.1428M12.25 13.0286V12.9512M16.25 13.0286V12.9512M4.75 8.91425H18.75M6.55952 3V4.54304M16.75 3V4.54285M16.75 4.54285H6.75C5.09315 4.54285 3.75 5.92436 3.75 7.62855V17.9143C3.75 19.6185 5.09315 21 6.75 21H16.75C18.4069 21 19.75 19.6185 19.75 17.9143L19.75 7.62855C19.75 5.92436 18.4069 4.54285 16.75 4.54285Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+                <div class="title">Směny</div>
+            </a>
+            <div class="item2 sett">
+                <button onclick="openPopup()" class="signout">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="settings"><g id="Icon"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.6763 4.31627C13.2488 2.56124 10.7512 2.56124 10.3237 4.31627C10.2599 4.57999 10.1347 4.82492 9.95831 5.03112C9.78194 5.23732 9.55938 5.39897 9.30874 5.50291C9.0581 5.60684 8.78646 5.65014 8.51592 5.62927C8.24538 5.60839 7.9836 5.52394 7.75187 5.38279C6.20832 4.44227 4.44201 6.20855 5.38254 7.75207C5.99006 8.74884 5.45117 10.0494 4.31713 10.325C2.56096 10.7514 2.56096 13.25 4.31713 13.6753C4.58093 13.7392 4.8259 13.8645 5.03211 14.041C5.23831 14.2175 5.39991 14.4402 5.50375 14.691C5.6076 14.9418 5.65074 15.2135 5.62968 15.4841C5.60862 15.7547 5.52394 16.0165 5.38254 16.2482C4.44201 17.7917 6.20832 19.558 7.75187 18.6175C7.98356 18.4761 8.24536 18.3914 8.51597 18.3704C8.78658 18.3493 9.05834 18.3924 9.30912 18.4963C9.5599 18.6001 9.7826 18.7617 9.95911 18.9679C10.1356 19.1741 10.2609 19.4191 10.3248 19.6829C10.7512 21.439 13.2499 21.439 13.6752 19.6829C13.7393 19.4192 13.8647 19.1744 14.0413 18.9684C14.2178 18.7623 14.4405 18.6008 14.6912 18.497C14.9419 18.3932 15.2135 18.35 15.4841 18.3709C15.7546 18.3919 16.0164 18.4764 16.2481 18.6175C17.7917 19.558 19.558 17.7917 18.6175 16.2482C18.4763 16.0165 18.3918 15.7547 18.3709 15.4842C18.35 15.2136 18.3932 14.942 18.497 14.6913C18.6008 14.4406 18.7623 14.2179 18.9683 14.0414C19.1744 13.8648 19.4192 13.7394 19.6829 13.6753C21.439 13.2489 21.439 10.7502 19.6829 10.325C19.4191 10.2611 19.1741 10.1358 18.9679 9.95928C18.7617 9.78278 18.6001 9.56007 18.4962 9.3093C18.3924 9.05853 18.3493 8.78677 18.3703 8.51617C18.3914 8.24556 18.4761 7.98376 18.6175 7.75207C19.558 6.20855 17.7917 4.44227 16.2481 5.38279C16.0164 5.52418 15.7546 5.60886 15.484 5.62992C15.2134 5.65098 14.9417 5.60784 14.6909 5.504C14.4401 5.40016 14.2174 5.23856 14.0409 5.03236C13.8644 4.82616 13.7391 4.58119 13.6752 4.3174L13.6763 4.31627Z" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" stroke="white" stroke-width="2" stroke-linecap="round"/></g></g></svg>
+                </button>
+                <button onclick="openSignOutPopup()" class="signout">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3H6a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h4M16 17l5-5-5-5M19.8 12H9"/></svg>
+                </button>
+            </div>  
+        </div>
+        <div class="sidebar">
+            <div class="frame">
+                <div class="vi-wrapper">
+                    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="image">
+                        <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
+                        <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        </svg>
+                </div>
+            </div>
+            <div class="img-wrapper">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="image">
+                    <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
+                    <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    </svg>
+            </div>
+            <div class="img-wrapper1">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="image">
+                    <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
+                    <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    </svg>
+            </div>
+        </div>
+        <div class="mainp">
+            <header>
+                <svg width="160" height="160" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="image">
+                    <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
+                    <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+                <div class="buttons">
+                    <button>Změna fotky</button>
+                    <button>Změna pozadí</button>
+                </div>
+            </header>
+                
+            <aside>
+                
+                <h1>Jméno Příjmení</h1>
+                <h3>Pozice</h3>
+                <p>Zde je popisek</p>
+                <div class="line"></div>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        email@email.com
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        +420 123 456 789
+                    </span>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/></svg>
+                        Preslova 72/25, 150 21 Praha 5 - Smíchov
+                    </span>
+                <div class="line"></div>
+            </aside>
+            <div class="right">
+                <div class="nadpis">
+                    <h2>Úprava profilu</h2>
+                    <h2>Status</h2>
+                </div>
+                <div class="right1">
+                    <div class="profile-fields1">
+                        <div class="field fieldborder">
+                            <label for="first-name">Křestní jméno</label>
+                            <input type="text" id="first-name" name="first-name" placeholder="Jméno">
+                        </div>
+                        <div class="field fieldborder1">
+                            <label for="last-name">Příjmení</label>
+                            <input type="text" id="last-name" name="last-name" placeholder="Příjmení">
+                        </div>
+                        <div class="field">
+                            <label for="birth-date">Datum narození</label>
+                            <input type="date" id="birth-date" name="birth-date" placeholder="1980-01-01">
+                        </div>
+                        <div class="field">
+                            <label for="address">Adresa</label>
+                            <input type="text" id="address" name="address" placeholder="Preslova 72/5">
+                        </div>
+                        <div class="field fieldborder2">
+                            <label for="zip">PSČ</label>
+                            <input type="text" id="zip" name="zip" placeholder="150 21">
+                        </div>
+                        <div class="field fieldborder3">
+                            <label for="city">Město (městská část)</label>
+                            <input type="text" id="city" name="city" placeholder="Praha 5 - Smíchov">
+                        </div>
+                    </div>
+                    
+                    <div class="status">
+                        
+                        <textarea placeholder="Zde je popisek profilu daného trouby bla bla..."></textarea>
+                    </div>
+                    <div class="profile-fields">
+                        <div class="field fieldborder4">
+                            <label for="phone">Telefonní číslo</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+420 123 456 789">
+                        </div>
+                        <div class="field fieldborder5">
+                            <label for="email">E-mailová adresa</label>
+                            <input type="email" id="email" name="email" placeholder="email@emailtrouba.com">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="overlay" id="popupOverlay">
+            <div class="popup" id="popup">
+                <button class="close-btn" onclick="closePopup()">✖</button>
+                <h2  class="jazyk">Settings</h2>
+                <div class="setting-option">
+                    <span class="jazyk">Notifikace</span>
+                    <div class="toggle" onclick="toggleOption(this)"></div>
+                </div>
+                <div class="setting-option">
+                    <span class="jazyk">Světlý mod</span>
+                    <div class="toggle" onclick="toggleOption(this)"></div>
+                </div>
+                <div class="setting-option">
+                    <span class="jazyk">Jazyk</span>
+                    <select id="languageSelect" onchange="changeLanguage(this)">
+                        <option value="cz">Čeština</option>
+                        <option value="en">English</option>                   
+                        <option value="es">Español</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="overlay" id="signoutOverlay">
+            <div class="popup" id="signoutPopup">
+                <h2 class="jazyk">Chcete se opravdu odhlásit?</h2>
+                <div class="popup-buttons">
+                    <button class="confirm-btn jazyk" id="logoutButton" onclick="confirmSignOut()">Ano, odhlásit se</button>
+                    <button class="cancel-btn jazyk" onclick="closeSignOutPopup()">Zrušit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("logoutButton").addEventListener("click", function() {
+            localStorage.removeItem("isLoggedIn");
+            window.location.href = "login.html";
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+            window.location.href = "login.html";
+        }
+        });
+    </script>
+    <script src="../renderer.js"></script>
+</body>
+</html>

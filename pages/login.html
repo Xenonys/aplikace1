@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Přihlášení</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/reset.css">
+    <script defer src="../backend/login.js"></script>¨
+    <script defer src="../renderer.js"></script>
+
+
+</head>
+<body>
+    <main class="mainli">   
+        <div class="login-container">
+            <h2>Přihlášení</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Personální ID" required>
+                <input type="password" id="password" placeholder="Heslo" required>
+                <button type="submit">Přihlásit se</button>
+            </form>
+            <p id="errorMessage" class="error-message"></p>
+        </div>
+    </main>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault(); // Zabrání reloadu stránky
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("http://localhost:5000/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem("token", data.token); // Uloží token do localStorage
+                window.location.href = "../index.html"; // Přesměrování na index.html
+            } else {
+                alert(data.message); // Zobrazí chybu
+            }
+        });
+    </script>
+    <script src="../renderer.js"></script>
+    <script src="../backend/login.js"></script>
+</body>
+</html>
