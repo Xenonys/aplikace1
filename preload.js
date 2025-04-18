@@ -8,3 +8,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
     isAuthenticated: () => ipcRenderer.invoke('isAuthenticated'),
     getUser: () => ipcRenderer.invoke('getUser')
   });
+
+  import { Titlebar } from "custom-electron-titlebar";
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Title bar implementation
+  new Titlebar();
+});

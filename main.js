@@ -70,13 +70,14 @@ function createWindow() {
     width: 1920,
     height: 1080,
     frame: false,
+    icon: path.join(__dirname, 'assets', 'icon.png'),
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-  win.loadFile('./index.html');
+  win.loadFile('./pages/login.html');
 
   win.webContents.openDevTools();
 

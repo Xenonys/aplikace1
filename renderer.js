@@ -9,6 +9,14 @@ document.getElementById("minimize-btn").addEventListener("click", () => {
     ipcRenderer.send("close-window");
   });
 
+  document.getElementById("maximize").addEventListener("click", () => {
+    ipcRenderer.send("maximize-restore-window");
+  });
+  
+  // Poslouchej stav z main procesu
+  ipcRenderer.on("window-is-maximized", (_, isMaximized) => {
+    btn.textContent = isMaximized ? "🗗" : "🗖"; // nebo změna classy
+  });
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Renderer script načten');
