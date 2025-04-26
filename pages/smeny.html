@@ -9,18 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/reset.css">
+    <link rel="stylesheet" href="../assets/responsivita.css">
     <script src="../assets/popup.js"></script>
     <script src="../assets/signout.js"></script>
     <script src="../assets/language.js"></script>
 </head>
 <body class="telo">
-    <nav>   
-        <div class="window-controls">
-            <button id="minimize-btn">—</button>
-            <button id="maximize">⬜</button>
-            <button id="close-btn">✖</button>
-        </div>
-    </nav>
     <div class="container">
     <div class="sidebar1"> 
         <a href="../index.html" class="logo">
@@ -55,34 +49,6 @@
             </button>
         </div>  
     </div>
-    <div class="sidebar">
-        <div class="frame">
-            <div class="vi-wrapper">
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="image">
-                    <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                    <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    </svg>
-            </div>
-        </div>
-        <div class="img-wrapper">
-            <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="image">
-                <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-                </svg>
-        </div>
-        <div class="img-wrapper1">
-            <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="image">
-                <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-                </svg>
-        </div>
-    </div>
     <div class="main2">
         <div class="calendar-container">
             <div class="calendarbig">
@@ -98,6 +64,29 @@
             </div>
         </div>
     </div>
+    <form id="formular-smena">
+        <label>ID uživatele:</label><br>
+        <input type="text" id="userId" required><br><br>
+      
+        <label>Datum směny:</label><br>
+        <input type="date" id="datum" required><br><br>
+      
+        <label>Typ směny:</label><br>
+        <select id="typ" required>
+          <option value="">-- Vyber směnu --</option>
+          <option value="Ranní">Ranní</option>
+          <option value="Odpolední">Odpolední</option>
+          <option value="Noční">Noční</option>
+        </select><br><br>
+      
+        <label>Čas začátku:</label><br>
+        <input type="time" id="casOd" required><br><br>
+      
+        <label>Čas konce:</label><br>
+        <input type="time" id="casDo" required><br><br>
+      
+        <button type="submit">Přidat směnu</button>
+    </form>
     <div class="overlay" id="popupOverlay">
         <div class="popup" id="popup">
             <button class="close-btn" onclick="closePopup()">✖</button>
@@ -134,14 +123,26 @@
     <script>
         document.getElementById("logoutButton").addEventListener("click", function() {
             localStorage.removeItem("isLoggedIn");
-            window.location.href = "login.html";
+            window.location.href = "./login.html";
         });
         document.addEventListener("DOMContentLoaded", function () {
         if (localStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "login.html";
+            window.location.href = "./login.html";
         }
         });
     </script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const username = document.getElementById('username').value;
+          const role = document.getElementById('role').value;
+      
+          localStorage.setItem('userId', username);
+          localStorage.setItem('role', role);
+      
+          window.location.href = './smeny.html'; // nebo smeny.html
+        });
+      </script>
     <script src="../assets/calendarbig.js"></script>
     <script src="../renderer.js"></script>
 </body>

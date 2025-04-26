@@ -9,18 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/styles.css">
     <link rel="stylesheet" href="./assets/reset.css">
+    <link rel="stylesheet" href="./assets/responsivita.css">
     <script src="./assets/popup.js"></script>
     <script src="./assets/signout.js"></script>
     <script src="./assets/language.js"></script>
 </head>
 <body>
-    <nav>   
-        <div class="window-controls">
-            <button id="minimize-btn">—</button>
-            <button id="maximize">🗗</button>
-            <button id="close-btn">✖</button>
-        </div>
-    </nav>
     
     <div class="container">
         <div class="sidebar1"> 
@@ -56,47 +50,19 @@
                 </button>
             </div>    
         </div>
-        <div class="sidebar">
-            <div class="frame">
-                <div class="vi-wrapper">
-                    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="image">
-                        <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                        <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        </svg>
-                </div>
-            </div>
-            <div class="img-wrapper">
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="image">
-                    <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                    <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    </svg>
-            </div>
-            <div class="img-wrapper1">
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="image">
-                    <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                    <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </g>
-                    </svg>
-            </div>
-        </div>
-
         <div class="main">
             <header>
-                <div class="user-info">
-                    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="image">
-                        <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                        <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        </svg>
+                <div class="user-info" id="userInfo">
+                    <div id="profile-image-container" style="width: 100px; height: 100px; border-radius: 50%; border: 5px solid #4950d4; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <!-- Fallback text if image fails to load -->
+                        <img id="userPic"
+                             width="100" height="100" 
+                             alt="Profile Picture"
+                             style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
                     <div>
-                        <h2>Václav Novák</h2>
-                        <p>Popisek profilu Václava Nováka</p>
+                        <h2 id="userName" style="padding-left: 25px;"></h2>
+                        <p id="userBio" style="font-style: italic; padding-left: 25px;"></p>
                     </div>
                 </div>
                 <div class="buttons">
@@ -216,6 +182,97 @@
         }
         });*/
     </script>
+    <!--<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load user data from localStorage
+            let userData;
+            try {
+                userData = JSON.parse(localStorage.getItem('userData') || '{}');
+                console.log("Successfully loaded user data:", userData);
+            } catch (error) {
+                console.error("Error parsing user data from localStorage:", error);
+                userData = {};
+            }
+        
+            // Update profile picture
+            const profilePicture = document.getElementById('UserPic');
+            if (userData.username === 'Sabrina') {
+                profilePicture.src = userData.profile_picture;
+                console.log("Setting profile picture to:", userData.profile_picture);
+            } else {
+                console.warn("No profile picture found in user data");
+                // Keep the placeholder image that's in the HTML
+            }
+        
+            // Update user name
+            const fullNameElement = document.getElementById('userName');
+            if (userData.fullName) {
+                fullNameElement.textContent = userData.fullName;
+                console.log("Setting user name to:", userData.fullName);
+            }
+        
+            /* Update description
+            const descriptionElement = document.getElementById('userBio');
+            if (userData.username === 'Sabrina') {
+                descriptionElement.textContent = userData.fullName;
+            } else if (userData.description) {
+                descriptionElement.textContent = userData.description;
+            } else {
+                descriptionElement.textContent = `${userData.username || 'User'}'s profile`;
+            } */
+        
+            // Log if user is not logged in
+            if (!localStorage.getItem('isLoggedIn')) {
+                console.warn("User is not logged in, profile data may be incomplete");
+            }
+        });
+        </script>!-->
+    
+
+    <script src="./backend/app.js"></script>
     <script src="./renderer.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+          let userData;
+          
+          try {
+            userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            // Check if data is nested in a 'user' property
+            const user = userData.user || userData;
+            
+            if (isLoggedIn && user) {
+              // Update profile picture
+              const profileImage = document.getElementById('userPic');
+              if (profileImage) {
+                profileImage.src = user.profile_picture || './assets/default-avatar.jpg';
+                profileImage.alt = user.fullName || user.username || 'Profile Picture';
+              }
+              
+              // Update username/fullname
+              const userNameElement = document.getElementById('userName');
+              if (userNameElement) {
+                userNameElement.textContent = user.fullName || user.username || 'User';
+              }
+              
+              // Update bio
+              const userBioElement = document.getElementById('userBio');
+              if (userBioElement) {
+                userBioElement.textContent = user.bio || `${user.username}'s profile`;
+              }
+              
+              console.log("User profile updated successfully");
+            } else {
+              console.log("User not logged in or no user data found");
+              // Use absolute path for Electron
+              window.location.href = window.location.origin + './pages/login.html';
+            }
+          } catch (error) {
+            console.error("Error processing user data:", error);
+            // Use absolute path for Electron
+            window.location.href = window.location.origin + './pages/login.html';
+          }
+        });
+      </script>
 </body>
 </html>

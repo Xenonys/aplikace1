@@ -1,0 +1,139 @@
+@media (max-width: 1440px) {
+    .container, .main, .mainp, .mainz {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .main1, .main2 {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .main-right, .main-left {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .sidebar, .sidebar1, .sidebar2, .sidebarz {
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        overflow-x: auto;
+        justify-content: center;
+    }
+
+    .sidebar .item, .sidebar2 .item, .sidebar1 .item {
+        width: auto;
+        height: auto;
+        flex-direction: row;
+        margin: 10px;
+    }
+
+    .calendar {
+        width: 90%;
+        height: auto;
+        padding: 15px;
+        font-size: 18px;
+        padding-bottom: 20px;
+    }
+
+    .calendarbig {
+        height: auto;
+        padding: 15px;
+    }
+
+    .cdays div {
+        min-height: 80px;
+        font-size: 18px;
+    }
+
+    .right1 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .profile-fields1 {
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        width: 100%;
+        padding: 30px 20px;
+        height: auto;
+        margin-top: 0;
+    }
+
+    .mainp header {
+        padding-left: 30px;
+    }
+
+    .chat-container {
+        width: 100%;
+    }
+
+    .chat-input {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .chat-input input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .chat-input button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1280px) {
+    .right1 {
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+    }
+
+    .main-right,
+    .main-left {
+        width: 100%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar1 input,
+    .sidebar2 input {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1919px) {
+
+    .right {
+        width: auto;
+        width: 70%;
+    }
+    .right1{
+        padding: 0 30px;
+    }
+    .status {
+        width: 70%;
+    }
+    .mainp aside{
+        width: 18%;
+        padding-left: 40px;
+    }
+    aside h3 {
+        font-size: 18px;
+    }
+    aside span{
+        font-size: 14px;
+    }
+    aside h1 {
+        font-size: 26px;
+    }
+    .line{
+        width: 150px;
+    }
+}

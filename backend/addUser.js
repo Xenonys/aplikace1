@@ -8,12 +8,18 @@ const connectDB = require("./config");
 const createUser = async () => {
   await connectDB();
 
-  const hashedPassword = bcrypt.hashSync("1234", 10);
-  const user = new User({ 
-    username: "1234",
+  const hashedPassword = bcrypt.hashSync("admin", 10);
+  const user = new User({
+    _id: "admin",
+    username: "admin",
     password: hashedPassword,
-    email: "1234@1234.com",
-    fullName: "1324 5678",
+    email: "admin@admin.admin",
+    fullName: "admin",
+    profile_picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrNZ2qZemYktaddFV5yjpT2UOuA2BPYtjD2w&s",
+    bio: "admin",
+    phone: "admin",
+    address: "admin",
+    position: "admin",
   });
 
   await user.save();

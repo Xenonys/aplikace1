@@ -32,6 +32,10 @@ async function loginUser(username, password) {
       user: {
         id: user._id,
         username: user.username,
+        bio: user.bio,
+        profile_picture: user.profile_picture,
+        email: user.email,
+        position: user.position,
         // Add other user fields as needed, excluding password
       },
       status: 200

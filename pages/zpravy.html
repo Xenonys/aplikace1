@@ -9,18 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/reset.css">
+    <link rel="stylesheet" href="../assets/responsivita.css">
     <script src="../assets/popup.js"></script>
     <script src="../assets/signout.js"></script>
     <script src="../assets/language.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 </head>
 <body class="telo">
-    <nav>   
-        <div class="window-controls">
-            <button id="minimize-btn">—</button>
-            <button id="maximize">⬜</button>
-            <button id="close-btn">✖</button>
-        </div>
-    </nav>
     <div class="container">
     <div class="sidebar1"> 
         <a href="../index.html" class="logo">
@@ -56,82 +51,39 @@
         </div>  
     </div>
     <div class="sidebarz">
-        <span>
-            <div class="frame">
-                <div class="vi-wrapper">
-                    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="image">
-                        <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                        <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        </svg>
-                        <span>Pepa</span> 
-                </div>
-            </div>
-        </span>
-        <span>
-            <div class="frame">
-                <div class="img-wrapper">
-                    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="image">
-                        <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                        <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        </svg>
-                        <span>Vasa</span>
-                </div>
-            </div>
-        </span>
-        <span>
-            <div class="frame">
-                <div class="img-wrapper1">
-                    <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="image">
-                        <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                        <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </g>
-                        </svg>
-                        <span>Franta</span>
-                </div>
-            </div>
-        </span>
-    </div>
+      <h2 style="padding: 15px; margin: 0; color: white;">Chaty</h2>
+      <div id="sidebarChatList">
+          <!-- Chat contacts will be populated here by JavaScript -->
+      </div>
+      
+      <!-- Keep your existing contacts as a fallback -->
+      <span id="fallback-contacts" style="display: none;">
+          <div class="frame">
+              <div class="vi-wrapper">
+                  <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g id="image">
+                      <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
+                      <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </g>
+                      </svg>
+                      <span>Pepa</span> 
+              </div>
+          </div>
+      </span>
+  </div>
     <div class="mainz">
-        <div class="chat-container">
-            <div class="chat-box" id="chat-box"></div>
-            <div class="chat-input">
-                <div class="input">
-                    <input type="text" id="message-input" placeholder="Type a message...">
-                    <button id="send-button">➤</button>
-                </div>
-            </div>
+        <div id="chatBox">
+          <div id="chat-header">
+            <h2 id="currentChatName">Vybraný chat</h2>
+          </div>
+          <ul id="messages"></ul>
+          <div id="typing-indicator" class="typing-indicator"></div>
+          <div class="message-input">
+            <input type="text" id="message" placeholder="Napište zprávu...">
+            <button id="sendMessageBtn" onclick="sendMessage()">Odeslat</button>
+          </div>
         </div>
-        <aside>
-            <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="image">
-                <rect width="100" height="100" rx="50" fill="#D9D9D9" fill-opacity="0.5"/>
-                <path id="Icon" d="M29.5625 36.5309V30.559M72.4375 36.5309V30.559M33.9146 69.3759C40.8979 74.7867 56.5578 74.7867 66.3159 69.3759M47.9375 54.4465L49.206 53.2097C50.3547 52.0897 51 50.5707 51 48.9869V33.5449" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-            </svg>
-            <h1>Jméno Příjmení</h1>
-            <h3>Pozice</h3>
-            <p>Zde je popisek</p>
-            <div class="line"></div>
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    email@email.com
-                </span>
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                    +420 123 456 789
-                </span>
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/></svg>
-                    Preslova 72/25, 150 21 Praha 5 - Smíchov
-                </span>
-            <div class="line"></div>
-        </aside>
-    </div>
+      </div>
     <div class="overlay" id="popupOverlay">
         <div class="popup" id="popup">
             <button class="close-btn" onclick="closePopup()">✖</button>
@@ -169,91 +121,541 @@
         
         document.getElementById("logoutButton").addEventListener("click", function() {
             localStorage.removeItem("isLoggedIn");
-            window.location.href = "login.html";
+            window.location.href = "./login.html";
         });
         document.addEventListener("DOMContentLoaded", function () {
         if (localStorage.getItem("isLoggedIn") !== "true") {
-            window.location.href = "login.html";
+            window.location.href = "./login.html";
         }
         });
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById('send-button').addEventListener('click', function() {
-            enviarMensagem();
-        });
-
-        document.getElementById('entrada_texto').addEventListener('keyup', function(event) {
-            if (event.keyCode === 13) {
-                enviarMensagem();
-            }
-        });
-
-        function enviarMensagem() {
-            var mensagem = document.getElementById("entrada_texto").value;
-            if (mensagem.trim() !== '') {
-                enviarRequisicaoRasa(mensagem);
-            }
-        }
-
-        function exibirResposta(resposta) {
-            var userInput = document.getElementById("entrada_texto").value;
-            var chatMessages = document.getElementById('chat');
-
-            var userMessageElement = createMessageElement(userInput, 'message left', 'avatar.png');
-            chatMessages.appendChild(userMessageElement);
-
-            var botMessageElement = createMessageElement(resposta, 'message right', 'chatbot.png');
-            chatMessages.appendChild(botMessageElement);
-
-            document.getElementById('entrada_texto').value = '';
-        }
-
-        function createMessageElement(message, className, icon) {
-
-            var messageContainer = document.createElement('li');
-            messageContainer.className = className;
-
-            var imageUrl = icon;
-            var imageElement = document.createElement('img');
-            imageElement.src = "https://cientistaspatentes.com.br/imagens/" + imageUrl;
-            imageElement.width = 60;
-            imageElement.align = 'middle';
-            imageElement.className = 'logo';
-            messageContainer.appendChild(imageElement);
-
-            if (message.trim() !== '') {
-                var textElement = document.createElement('p');
-                textElement.innerText = "  " + message;
-                messageContainer.appendChild(textElement);
-            }
-
-            return messageContainer;
-
-        }
-
-        function enviarRequisicaoRasa(mensagem) {
-            var url = "http://localhost:5005/webhooks/rest/webhook";
-            var payload = {
-                "sender": "user",
-                "message": mensagem
-            };
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var respostas = JSON.parse(xhr.responseText);
-                    if (respostas.length > 0) {
-                        var resposta = respostas[0].text;
-                        exibirResposta(resposta);
-                    }
-                }
-            };
-            xhr.send(JSON.stringify(payload));
-        }
-    </script>
+  
     <script src="../JavaScript/chat.js"></script>
     <script src="../renderer.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get user data
+        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+        const currentUsername = userData.username || 'Guest';
+        
+        console.log("Current user:", currentUsername);
+        console.log("User data:", userData);
+        
+        // DOM Elements
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('sendMessageBtn');
+        const currentChatName = document.getElementById('currentChatName');
+        const typingIndicator = document.getElementById('typing-indicator');
+        const sidebarChatList = document.getElementById('sidebarChatList');
+
+        
+        // Chat state
+        let activeChat = null;
+        let chats = [];
+        let typingTimeout;
+        
+        // Initialize socket connection
+        let socket;
+        try {
+          socket = io('http://localhost:5000', {
+            query: {
+              username: currentUsername
+            }
+          });
+          
+          console.log("Socket connection initialized");
+          
+          // Socket events
+          socket.on('connect', () => {
+            console.log('Connected to chat server');
+            // Load chat history
+            socket.emit('get chats', currentUsername);
+          });
+          
+          socket.on('chat history', (chatData) => {
+            console.log('Received chat history:', chatData);
+            chats = chatData;
+            updateSidebar();
+            
+            // If there are chats, select the first one
+            if (chats.length > 0) {
+              selectChat(chats[0].id);
+            }
+          });
+          
+          socket.on('new message', (message) => {
+            console.log('New message received:', message);
+            
+            // Update chat preview in the list
+            updateChatPreview(message.chatId, message);
+            
+            // If this is for the active chat, add it to the messages
+            if (message.chatId === activeChat) {
+              addMessageToChat(message);
+              scrollToBottom();
+            } else {
+              // Highlight the chat with new message
+              highlightChat(message.chatId);
+            }
+          });
+          
+          socket.on('typing', (data) => {
+            if (data.chatId === activeChat && data.username !== currentUsername) {
+              typingIndicator.textContent = `${data.username} píše...`;
+            }
+          });
+          
+          socket.on('stop typing', (data) => {
+            if (data.chatId === activeChat) {
+              typingIndicator.textContent = '';
+            }
+          });
+          
+          socket.on('user profile', (profile) => {
+            updateUserProfile(profile);
+          });
+          
+          socket.on('new chat', (chat) => {
+            // Check if we already have this chat
+            const existingChat = chats.find(c => c.id === chat.id);
+            if (!existingChat) {
+              chats.push(chat);
+              updateSidebar();
+            }
+          });
+          
+          socket.on('disconnect', () => {
+            console.log('Disconnected from chat server');
+          });
+          
+          socket.on('connect_error', (error) => {
+            console.error('Socket connection error:', error);
+            setTimeout(() => {
+              loadMockData();
+            }, 1000);
+          });
+        } catch (error) {
+          console.error("Socket initialization error:", error);
+          // If socket.io fails, load mock data
+          setTimeout(() => {
+            loadMockData();
+          }, 1000);
+        }
+        
+        // Event listeners
+        if (messageInput) {
+          messageInput.addEventListener('keypress', function(e) {
+            // Send message on Enter key
+            if (e.key === 'Enter') {
+              sendMessage();
+            }
+            
+            if (socket && socket.connected) {
+              // Emit typing event
+              socket.emit('typing', {
+                username: currentUsername,
+                chatId: activeChat
+              });
+              
+              // Clear previous timeout
+              clearTimeout(typingTimeout);
+              
+              // Set new timeout
+              typingTimeout = setTimeout(() => {
+                socket.emit('stop typing', {
+                  username: currentUsername,
+                  chatId: activeChat
+                });
+              }, 1000);
+            }
+          });
+        }
+        
+        if (sendButton) {
+          sendButton.addEventListener('click', sendMessage);
+        }
+     
+        // Initialize the app
+        updateUserProfile(userData);
+        
+        // Functions
+        function updateSidebar() {
+          if (!sidebarChatList) return;
+          console.log("Updating sidebar with chats:", chats);
+          
+          // Clear existing sidebar chat list
+          sidebarChatList.innerHTML = '';
+          
+          // Add chats to sidebar
+          chats.forEach(chat => {
+            const chatItem = document.createElement('span');
+            
+            // Determine chat name (for direct chats, use the other user's name)
+            const chatName = chat.isGroup ? 
+              chat.name : 
+              chat.participants.find(p => p !== currentUsername);
+            
+            chatItem.innerHTML = `
+              <div class="frame" data-chat-id="${chat.id}">
+                <div class="img-wrapper">
+                  <img src="${chat.avatar || '../assets/placeholder.jpg'}" 
+                       alt="${chatName}" 
+                       width="70" height="70" 
+                       style="border-radius: 50%; object-fit: cover; border: 5px solid #4950d4;">
+                  <span>${chatName}</span>
+                </div>
+              </div>
+            `;
+            
+            // Add click event
+            chatItem.querySelector('.frame').addEventListener('click', () => {
+              selectChat(chat.id);
+            });
+            
+            sidebarChatList.appendChild(chatItem);
+          });
+          
+          // Show or hide fallback contacts
+          const fallbackContacts = document.getElementById('fallback-contacts');
+          if (fallbackContacts) {
+            fallbackContacts.style.display = chats.length > 0 ? 'none' : 'block';
+          }
+        }
+        
+        function selectChat(chatId) {
+          console.log("Selecting chat:", chatId);
+          
+          // Remove active class from sidebar items
+          document.querySelectorAll('.sidebarz .frame').forEach(item => {
+            item.style.backgroundColor = '';
+          });
+          
+          // Highlight selected chat in sidebar
+          const sidebarChatElement = document.querySelector(`.sidebarz .frame[data-chat-id="${chatId}"]`);
+          if (sidebarChatElement) {
+            sidebarChatElement.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+          }
+          
+          // Set active chat
+          activeChat = chatId;
+          
+          // Get chat data
+          const chat = chats.find(c => c.id === chatId);
+          if (!chat) return;
+          
+          // Update chat header
+          const chatName = chat.isGroup ? 
+            chat.name : 
+            chat.participants.find(p => p !== currentUsername);
+          if (currentChatName) {
+            currentChatName.textContent = chatName;
+          }
+          
+          // Get user profile for direct chats
+          if (!chat.isGroup && socket && socket.connected) {
+            socket.emit('get user profile', chat.participants.find(p => p !== currentUsername));
+          }
+          
+          // Clear messages
+          if (messagesContainer) {
+            messagesContainer.innerHTML = '';
+            
+            // Load messages
+            chat.messages.forEach(message => {
+              addMessageToChat(message);
+            });
+            
+            // Scroll to bottom
+            scrollToBottom();
+          }
+        }
+        
+        function sendMessage() {
+          const messageText = messageInput.value.trim();
+          
+          if (messageText && activeChat) {
+            // Clear input
+            messageInput.value = '';
+            
+            // Create message object
+            const messageId = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            const message = {
+              id: messageId,  // Add unique ID
+              chatId: activeChat,
+              sender: currentUsername,
+              text: messageText,
+              timestamp: new Date().toISOString()
+            };
+            
+            console.log("Sending message:", message);
+            
+            // Send to server if connected
+            if (socket && socket.connected) {
+      socket.emit('new message', message);
+      
+          // For connected mode, DON'T add message directly to UI
+          // Let the server echo it back through the 'new message' event
+          // This prevents duplicate messages
+        } else {
+          // For offline mode, add directly since there's no server echo
+          addMessageToChat(message);
+          updateChatPreview(activeChat, message);
+          scrollToBottom();
+        }
+            
+            // Stop typing indicator
+            if (socket && socket.connected) {
+              socket.emit('stop typing', {
+                username: currentUsername,
+                chatId: activeChat
+              });
+            }
+          }
+        }
+        
+        function addMessageToChat(message) {
+          if (!messagesContainer) return;
+          
+          const li = document.createElement('li');
+          const isOwnMessage = message.sender === currentUsername;
+          
+          li.className = `message ${isOwnMessage ? 'own' : 'other'}`;
+          
+          // Format timestamp
+          const timestamp = new Date(message.timestamp);
+          const formattedTime = timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          
+          li.innerHTML = `
+            ${!isOwnMessage ? `<div class="message-sender">${message.sender}</div>` : ''}
+            <div class="message-text">${message.text}</div>
+            <span class="message-time">${formattedTime}</span>
+          `;
+          
+          messagesContainer.appendChild(li);
+        }
+        
+        function scrollToBottom() {
+          if (messagesContainer) {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          }
+        }
+        
+        function updateChatPreview(chatId, message) {
+          const chat = chats.find(c => c.id === chatId);
+          if (!chat) return;
+          
+          // Add message to chat
+          chat.messages.push(message);
+        }
+        
+        function highlightChat(chatId) {
+          const chatElement = document.querySelector(`.sidebarz .frame[data-chat-id="${chatId}"]`);
+          if (chatElement) {
+            chatElement.style.backgroundColor = 'rgba(100, 100, 255, 0.3)';
+            setTimeout(() => {
+              if (chatId !== activeChat) {
+                chatElement.style.backgroundColor = '';
+              } else {
+                chatElement.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+              }
+            }, 2000);
+          }
+        }
+        
+        function updateUserProfile(userData) {
+          if (!userData) return;
+          
+          const profileImage = document.getElementById('profileImage');
+          const profileName = document.getElementById('profileName');
+          const profilePosition = document.getElementById('profilePosition');
+          const profileBio = document.getElementById('profileBio');
+          const profileEmail = document.getElementById('profileEmail');
+          const profilePhone = document.getElementById('profilePhone');
+          const profileAddress = document.getElementById('profileAddress');
+          
+          if (profileImage && userData.profile_picture) {
+            profileImage.src = userData.profile_picture;
+          }
+          
+          if (profileName) {
+            profileName.textContent = userData.fullName || userData.username || 'Uživatel';
+          }
+          
+          if (profilePosition) {
+            profilePosition.textContent = userData.position || 'Pozice není určena';
+          }
+          
+          if (profileBio) {
+            profileBio.textContent = userData.bio || 'Žádný popisek';
+          }
+          
+          if (profileEmail) {
+            profileEmail.textContent = userData.email || 'email@email.com';
+          }
+          
+          if (profilePhone) {
+            profilePhone.textContent = userData.phone || '+420 123 456 789';
+          }
+          
+          if (profileAddress) {
+            profileAddress.textContent = userData.address || 'Adresa není určena';
+          }
+        }
+        
+        function openNewChatDialog() {
+          // Simple prompt for demo purposes
+          const recipient = prompt("Zadejte uživatelské jméno příjemce:");
+          
+          if (recipient && recipient !== currentUsername) {
+            // Check if chat already exists
+            const existingChat = chats.find(chat => 
+              !chat.isGroup && 
+              chat.participants.includes(currentUsername) && 
+              chat.participants.includes(recipient)
+            );
+            
+            if (existingChat) {
+              // If chat exists, select it
+              selectChat(existingChat.id);
+            } else {
+              // Create new chat
+              createNewChat(recipient);
+            }
+          }
+        }
+        
+        function createNewChat(recipient) {
+          // Generate unique ID
+          const chatId = 'chat-' + Date.now();
+          
+          // Create new chat object
+          const newChat = {
+            id: chatId,
+            isGroup: false,
+            participants: [currentUsername, recipient],
+            avatar: 'https://i.pravatar.cc/150?img=' + Math.floor(Math.random() * 10),
+            messages: []
+          };
+          
+          console.log("Creating new chat:", newChat);
+          
+          // Add to chats array
+          chats.push(newChat);
+          
+          // Add to server (in a real app)
+          if (socket && socket.connected) {
+            socket.emit('create chat', newChat);
+          }
+          
+          // Update UI
+          updateSidebar();
+          
+          // Select the new chat
+          selectChat(chatId);
+        }
+        
+        // Mock data for testing without a server
+        function loadMockData() {
+          console.log("Loading mock chat data");
+          
+          const mockChats = [
+            {
+              id: 'chat1',
+              name: 'Team Chat',
+              isGroup: true,
+              participants: [currentUsername, 'Pepa', 'Vasa', 'Franta', 'admin', '1234'],
+              avatar: 'https://i.pravatar.cc/150?img=1',
+              messages: [
+                {
+                  chatId: 'chat1',
+                  sender: 'Pepa',
+                  text: 'Ahoj týme, jak se máte?',
+                  timestamp: '2023-09-10T08:30:00.000Z'
+                },
+                {
+                  chatId: 'chat1',
+                  sender: 'Vasa',
+                  text: 'Všechno v pohodě, pracuji na nových funkcích',
+                  timestamp: '2023-09-10T08:32:00.000Z'
+                },
+                {
+                  chatId: 'chat1',
+                  sender: currentUsername,
+                  text: 'Ahoj, já taky v pohodě. Chystám se na schůzku.',
+                  timestamp: '2023-09-10T08:35:00.000Z'
+                }
+              ]
+            },
+            {
+              id: 'chat2',
+              name: null,
+              isGroup: false,
+              participants: [currentUsername, 'Pepa'],
+              avatar: 'https://i.pravatar.cc/150?img=3',
+              messages: [
+                {
+                  chatId: 'chat2',
+                  sender: 'Pepa',
+                  text: 'Ahoj, můžeš mi pomoct s tím novým projektem?',
+                  timestamp: '2023-09-11T10:15:00.000Z'
+                },
+                {
+                  chatId: 'chat2',
+                  sender: currentUsername,
+                  text: 'Jasně, co potřebuješ?',
+                  timestamp: '2023-09-11T10:18:00.000Z'
+                }
+              ]
+            },
+            {
+              id: 'chat3',
+              name: null,
+              isGroup: false,
+              participants: [currentUsername, '1234'],
+              avatar: 'https://i.pravatar.cc/150?img=7',
+              messages: [
+                {
+                  chatId: 'chat3',
+                  sender: '1234',
+                  text: 'Ahoj, kdy budeš mít čas na schůzku?',
+                  timestamp: '2023-09-12T14:20:00.000Z'
+                },
+                {
+                  chatId: 'chat3',
+                  sender: currentUsername,
+                  text: 'Zítra v 15:00 by mi vyhovovalo',
+                  timestamp: '2023-09-12T14:22:00.000Z'
+                },
+                {
+                  chatId: 'chat3',
+                  sender: '1234',
+                  text: 'Skvělé, tak se těším!',
+                  timestamp: '2023-09-12T14:25:00.000Z'
+                }
+              ]
+            }
+          ];
+          
+          chats = mockChats;
+          updateSidebar();
+          
+          // Select first chat
+          if (chats.length > 0) {
+            selectChat(chats[0].id);
+          }
+        }
+        
+        // If there's no server connection after 3 seconds, load mock data
+        setTimeout(() => {
+          if (chats.length === 0) {
+            console.log('No chats loaded after timeout, loading mock data');
+            loadMockData();
+          }
+        }, 3000);
+      });
+    </script>
 </body>
 </html>

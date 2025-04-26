@@ -1,4 +1,4 @@
-// preload.js
+//preload.js
 const { contextBridge, ipcRenderer } = require('electron');
 
 // Exponujte API do okna prohlížeče
@@ -14,4 +14,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
 window.addEventListener('DOMContentLoaded', () => {
   // Title bar implementation
   new Titlebar();
-});
+}); 
+
